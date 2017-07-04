@@ -12,5 +12,13 @@
     <bean id="cacheFileEventLogger" class="com.epam.spring.core.utils.CacheFileEventLogger" init-method="init" parent="fileLogger" destroy-method="destroy">
         <constructor-arg type="java.lang.Integer" value="3"/>
     </bean>
+    <bean id="combinedLogger" class="com.epam.spring.core.utils.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="eventLogger"/>
+                <ref bean="fileLogger"/>
+            </list>
+        </constructor-arg>
+    </bean>
 
 </beans>

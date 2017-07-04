@@ -14,7 +14,7 @@ public class FileEventLogger implements EventLogger{
     private File file;
     public void logEvent(Event msg) throws IOException {
 
-        FileUtils.writeStringToFile(file,msg.getMsg()+"\n",true);
+        FileUtils.writeStringToFile(file,msg.toString()+"\n",true);
     }
     public void init() throws IOException {
         if (!file.canWrite()){
