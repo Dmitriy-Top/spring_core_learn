@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="eventLogger" class="com.epam.spring.core.utils.ConsoleEventLogger"/>
+    <bean id="fileLogger" class="com.epam.spring.core.utils.FileEventLogger" init-method="init">
+        <constructor-arg type="java.lang.String" value="log.txt"/>
+    </bean>
+    <bean id="cacheFileEventLogger" class="com.epam.spring.core.utils.CacheFileEventLogger" init-method="init" parent="fileLogger" destroy-method="destroy">
+        <constructor-arg type="java.lang.Integer" value="3"/>
+    </bean>
+
+</beans>
