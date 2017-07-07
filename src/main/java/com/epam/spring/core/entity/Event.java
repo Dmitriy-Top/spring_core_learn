@@ -21,11 +21,11 @@ public class Event {
     }
 
     public Event(Date date) {
-        this.id = (int) Math.random()*100;
+        this.id = (int)Math.round( Math.random()*100);
         this.date = date;
     }
     public Event(Date date,DateFormat df) {
-        this.id = (int) Math.random()*100;
+        this.id = (int)Math.round( Math.random()*100);
         this.date = date;
         this.df = df;
     }
@@ -37,5 +37,12 @@ public class Event {
                 ", msg='" + msg + '\'' +
                 ", date=" + df.format(date) +
                 '}';
+    }
+
+    public static boolean isDay(){
+        Boolean isDay = true;
+        Date date = new Date();
+        if( date.getHours() > 17 | date.getHours() < 8 ) isDay = false;
+        return isDay;
     }
 }

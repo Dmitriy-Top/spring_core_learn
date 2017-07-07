@@ -29,13 +29,13 @@
         <entry key="INFO" value-ref="eventLogger"/>
         <entry key="ERROR" value-ref="combinedLogger"/>
     </util:map>
-    <bean id="client" class="com.epam.spring.core.entity.Client"  c:id="${id}" c:fullname="${name}" p:greeting="%{greeting}"/>
-    <bean id="app" class="com.epam.spring.core.App" c:client-ref="client" c:loggers-ref="loggerMap" c:eventLogger-ref="fileLogger"/>
     <bean id="event" class="com.epam.spring.core.entity.Event" scope="prototype">
         <constructor-arg>
             <bean class="java.util.Date" scope="prototype"/>
         </constructor-arg>
         <constructor-arg ref="dateFormatter"/>
     </bean>
+    <bean id="client" class="com.epam.spring.core.entity.Client"  c:id="${id}" c:fullname="${name}" p:greeting="${greeting} + #{systemEnvironment['USERNAME']}"/>
+    <bean id="app" class="com.epam.spring.core.App" c:client-ref="client" c:loggers-ref="loggerMap" c:eventLogger-ref="#{T(com.epam.spring.core.entity.Event).isDay() ? 'fileLogger' : 'eventLogger'}"/>
     <bean id="dateFormatter" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 </beans>
