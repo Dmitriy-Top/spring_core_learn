@@ -4,11 +4,14 @@
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
  		http://www.springframework.org/schema/util
- 		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+ 		http://www.springframework.org/schema/util/spring-util-3.2.xsd
+ 		http://www.springframework.org/schema/context
+ 		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 
 
@@ -25,6 +28,7 @@
         </property>
     </bean>
     <import resource="loggers.xml"/>
+    <context:annotation-config/>
     <util:map id="loggerMap">
         <entry key="INFO" value-ref="eventLogger"/>
         <entry key="ERROR" value-ref="combinedLogger"/>
