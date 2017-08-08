@@ -1,5 +1,7 @@
 package com.epam.spring.core;
 
+import com.epam.spring.core.aspects.LoggingAspect;
+import com.epam.spring.core.aspects.StatisticAspect;
 import com.epam.spring.core.entity.Client;
 import com.epam.spring.core.entity.Event;
 import com.epam.spring.core.entity.typeLists.EventType;
@@ -34,15 +36,23 @@ public class App {
     public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App) ctx.getBean("app");
+        StatisticAspect sa = (StatisticAspect) ctx.getBean("statisticAspect");
         Event event_1 = (Event) ctx.getBean("event");
         Event event_2 = (Event) ctx.getBean("event");
         Event event_3 = (Event) ctx.getBean("event");
+        Event event_4 = (Event) ctx.getBean("event");
+        Event event_5 = (Event) ctx.getBean("event");
         event_1.setMsg("Some event for user 1");
         event_2.setMsg("Some event for user 2");
         event_3.setMsg("Some event for user 3");
+        event_4.setMsg("Some event for user 4");
+        event_5.setMsg("Some event for user 5");
         app.logEvent(event_1, null);
         app.logEvent(event_2, EventType.INFO);
         app.logEvent(event_3, EventType.ERROR);
+        app.logEvent(event_4, EventType.ERROR);
+        app.logEvent(event_5, EventType.ERROR);
+        System.out.println(sa.getCounter().toString());
 
 
     }
