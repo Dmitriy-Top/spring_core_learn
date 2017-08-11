@@ -19,6 +19,7 @@
         <property name="locations">
             <list>
                 <value>classpath:client.properties</value>
+                <value>classpath:jdbc.properties</value>
             </list>
         </property>
         <property name="ignoreResourceNotFound" value="true" />
@@ -30,7 +31,7 @@
     <import resource="loggers.xml"/>
     <util:map id="loggerMap">
         <entry key="INFO" value-ref="eventLogger"/>
-        <entry key="ERROR" value-ref="combinedLogger"/>
+        <entry key="ERROR" value-ref="dbLogger"/>
     </util:map>
     <bean id="event" class="com.epam.spring.core.entity.Event" scope="prototype">
         <constructor-arg>

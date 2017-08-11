@@ -20,6 +20,10 @@ public class Event {
         this.msg = msg;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public Event(Date date) {
         this.id = (int)Math.round( Math.random()*100);
         this.date = date;
